@@ -39,7 +39,7 @@ public class Checklist : MonoBehaviour
 
     private void DesbloquearMesa()
     {
-        Debug.Log("[Checklist] ¡Equipamiento completo! Mesa desbloqueada ??");
+        Debug.Log("[Checklist] ¡Equipamiento completo! Mesa desbloqueada");
 
         if (mesaDeMezcla != null)
             mesaDeMezcla.enabled = true;

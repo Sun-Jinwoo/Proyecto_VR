@@ -1,42 +1,41 @@
-﻿using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+
 
 public class MesaMezcla : MonoBehaviour
 {
     [Header("Conectar desde el Inspector")]
-    public XRSocketInteractor slotA;       // Hueco izquierdo
-    public XRSocketInteractor slotB;       // Hueco derecho
-    public XRBaseInteractable boton;     // Botón de mezclar
+    public XRSocketInteractor slotA;
+    public XRSocketInteractor slotB;
+    public XRBaseInteractable boton;
 
-    // Los elementos que están en cada slot
+    [Header("Texto resultado")] // NUEVO
+    public TextMeshProUGUI textoResultado; // NUEVO
+
     private ElementoQuimico _elementoA;
     private ElementoQuimico _elementoB;
 
     private void Start()
     {
-        // Escuchamos cuando un elemento entra o sale de cada slot
         slotA.selectEntered.AddListener(args => _elementoA = args.interactableObject.transform.GetComponent<ElementoQuimico>());
         slotA.selectExited.AddListener(args => _elementoA = null);
 
         slotB.selectEntered.AddListener(args => _elementoB = args.interactableObject.transform.GetComponent<ElementoQuimico>());
         slotB.selectExited.AddListener(args => _elementoB = null);
 
-        // Escuchamos el botón
         boton.selectEntered.AddListener(args => Mezclar());
     }
 
     private void Mezclar()
     {
-        // ¿Hay algo en los dos slots?
         if (_elementoA == null || _elementoB == null)
         {
-            Debug.Log("Faltan elementos en la mesa.");
+            MostrarTexto("Faltan elementos en la mesa.");
             return;
         }
 
-        // Le preguntamos al SistemaReacciones si esta combinación es válida
         string resultado = Recetas.Instancia.VerificarReaccion(
             _elementoA.simbolo,
             _elementoB.simbolo
@@ -44,10 +43,7 @@ public class MesaMezcla : MonoBehaviour
 
         if (resultado != null)
         {
-            // ✅ REACCIÓN VÁLIDA
-            Debug.Log($"¡Reacción exitosa! Resultado: {resultado}");
-
-            // Eliminamos los frascos usados
+            MostrarTexto($"¡Reacción exitosa!\n{resultado}"); // NUEVO
             Destroy(_elementoA.gameObject);
             Destroy(_elementoB.gameObject);
             _elementoA = null;
@@ -55,8 +51,13 @@ public class MesaMezcla : MonoBehaviour
         }
         else
         {
-            // ❌ COMBINACIÓN INVÁLIDA
-            Debug.Log($"Combinación inválida: {_elementoA.simbolo} + {_elementoB.simbolo}");
+            MostrarTexto($"Combinación inválida:\n{_elementoA.simbolo} + {_elementoB.simbolo}"); // NUEVO
         }
+    }
+
+    private void MostrarTexto(string mensaje) // NUEVO
+    {
+        if (textoResultado != null)
+            textoResultado.text = mensaje;
     }
 }
