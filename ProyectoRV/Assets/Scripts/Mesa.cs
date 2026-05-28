@@ -12,9 +12,16 @@ public class MesaMezcla : MonoBehaviour
     public XRBaseInteractable boton;
 
     [Header("Tablero")]
+    public GameObject canvasTablero;
     public TextMeshProUGUI textoResultado;
     public TextMeshProUGUI textoPuntuacion;
     public TextMeshProUGUI textoTiempo;
+
+    [Header("Pantalla de resultados")]
+    public GameObject canvasResultados;         
+    public TextMeshProUGUI textoPuntuacionFinal; 
+    public TextMeshProUGUI textoEstrellas;       
+    public TextMeshProUGUI textoMensaje;         
 
     public float tiempoTotal = 120f;
 
@@ -51,7 +58,7 @@ public class MesaMezcla : MonoBehaviour
         {
             _tiempoRestante = 0f;
             _juegoActivo = false;
-            MostrarTexto($"¡Tiempo agotado!\nPuntuación final: {_puntos}");
+            MostrarResultados();
         }
     }
 
@@ -142,5 +149,41 @@ public class MesaMezcla : MonoBehaviour
     {
         if (textoPuntuacion != null)
             textoPuntuacion.text = $"Puntos: {_puntos}";
+    }
+
+    private void MostrarResultados()
+    {
+        if (canvasTablero != null)
+            canvasTablero.SetActive(false);
+        // Ocultamos el tablero y mostramos la pantalla final
+        if (canvasResultados != null)
+            canvasResultados.SetActive(true);
+
+        // Puntuación
+        if (textoPuntuacionFinal != null)
+            textoPuntuacionFinal.text = $"Puntuación final:\n{_puntos} puntos";
+
+        // Estrellas según puntuación
+        int estrellas = 0;
+        if (_puntos >= 300) estrellas = 3;
+        else if (_puntos >= 150) estrellas = 2;
+        else if (_puntos >= 50) estrellas = 1;
+
+        if (textoEstrellas != null)
+            textoEstrellas.text = estrellas switch
+            {
+                3 => "*** ¡Brillante!",
+                2 => "** ¡Bien hecho!",
+                1 => "* Sigue practicando",
+                _ => "Inténtalo de nuevo"
+            };
+
+        // Mensaje motivacional
+        if (textoMensaje != null)
+            textoMensaje.text = _puntos > 0
+                ? $"Completaste {_puntos / 100} reacciones exitosas.\n¡Eres un gran científico!"
+                : "No lograste ninguna reacción.\n¡Inténtalo de nuevo!";
+
+        Debug.Log($"[Resultados] Juego terminado. Puntos: {_puntos}");
     }
 }
