@@ -1062,6 +1062,7 @@ GameObject:
   - component: {fileID: 352043503}
   - component: {fileID: 352043504}
   - component: {fileID: 352043505}
+  - component: {fileID: 352043506}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1138,6 +1139,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2fba61f4e26b0442b8c925b1cdf2240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Misiones
+--- !u!114 &352043506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352043501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0043b28882ac17e4a890adeeac91a505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReaccionesDB
+  colorHidrogeno: {r: 0.27, g: 0.71, b: 0.9, a: 1}
+  colorOxigeno: {r: 0.18, g: 0.72, b: 0.25, a: 1}
+  colorCloro: {r: 0.9, g: 0.4, b: 0.7, a: 1}
+  colorSodio: {r: 0.88, g: 0.88, b: 0.88, a: 1}
+  colorAgua: {r: 0.05, g: 0.35, b: 0.7, a: 1}
+  colorAcidoClorhidrico: {r: 0.55, g: 0.95, b: 0.45, a: 1}
+  colorHidruroSodio: {r: 0.95, g: 0.9, b: 0.1, a: 1}
+  colorOxidoCloro: {r: 0.5, g: 0.3, b: 0.1, a: 1}
+  colorCloruroSodio: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &397499267
 GameObject:
   m_ObjectHideFlags: 0
@@ -3784,6 +3806,100 @@ Transform:
   - {fileID: 143898492}
   m_Father: {fileID: 1895531674}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1205876435
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 393790716198911124, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+      propertyPath: m_Name
+      value: Matraz2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025930374499378734, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.8569001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025930374499378734, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6994291
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025930374499378734, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.7667284
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025930374499378734, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025930374499378734, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025930374499378734, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025930374499378734, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025930374499378734, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025930374499378734, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025930374499378734, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656491256684870309, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 393790716198911124, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1205876438}
+  m_SourcePrefab: {fileID: 100100000, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+--- !u!1 &1205876436 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 393790716198911124, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+  m_PrefabInstance: {fileID: 1205876435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1205876437 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1621186581092675373, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
+  m_PrefabInstance: {fileID: 1205876435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1205876438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205876436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b5684303ad9b445805ce3823669ac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RecipienteQuimico
+  liquidoRenderer: {fileID: 1205876437}
+  escalaZInicial: 0.1
+  incrementoZ: 0.12
+  radioDeteccion: 0.18
+  capaElementos:
+    serializedVersion: 2
+    m_Bits: 64
+  capacidadMaxima: 3
 --- !u!1 &1258394620
 GameObject:
   m_ObjectHideFlags: 0
@@ -7082,7 +7198,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1089800167833809633, guid: 398356d0768d4324790985dfca7459cc, type: 3}
       propertyPath: m_Name
-      value: Cylinder (2)
+      value: Hidrogeno
       objectReference: {fileID: 0}
     - target: {fileID: 1448789945739147132, guid: 398356d0768d4324790985dfca7459cc, type: 3}
       propertyPath: prefabPropio
@@ -7153,6 +7269,10 @@ PrefabInstance:
       propertyPath: puntoRespawn
       value: 
       objectReference: {fileID: 1738149550}
+    - target: {fileID: 1973016344847003305, guid: 6b317a8dac314e446a4df189c434be44, type: 3}
+      propertyPath: rendererElemento
+      value: 
+      objectReference: {fileID: 2775618251281568154}
     - target: {fileID: 2446106911102937784, guid: 6b317a8dac314e446a4df189c434be44, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.313
@@ -7195,13 +7315,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3961647269243474695, guid: 6b317a8dac314e446a4df189c434be44, type: 3}
       propertyPath: m_Name
-      value: Cylinder (3)
+      value: Sodio
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b317a8dac314e446a4df189c434be44, type: 3}
+--- !u!23 &2775618251281568154 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4995713855863458736, guid: 6b317a8dac314e446a4df189c434be44, type: 3}
+  m_PrefabInstance: {fileID: 2775618251281568153}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3822394803559265060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7218,6 +7343,10 @@ PrefabInstance:
       propertyPath: puntoRespawn
       value: 
       objectReference: {fileID: 1489311649}
+    - target: {fileID: 702962630578851462, guid: 41f5a2bc3c189f04ab4302dbe8e848a4, type: 3}
+      propertyPath: rendererElemento
+      value: 
+      objectReference: {fileID: 3822394803559265061}
     - target: {fileID: 6809799263297763198, guid: 41f5a2bc3c189f04ab4302dbe8e848a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.403
@@ -7260,13 +7389,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8314162050710366327, guid: 41f5a2bc3c189f04ab4302dbe8e848a4, type: 3}
       propertyPath: m_Name
-      value: Cylinder
+      value: Oxigeno
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41f5a2bc3c189f04ab4302dbe8e848a4, type: 3}
+--- !u!23 &3822394803559265061 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4889612764831007845, guid: 41f5a2bc3c189f04ab4302dbe8e848a4, type: 3}
+  m_PrefabInstance: {fileID: 3822394803559265060}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6024444619335795149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7363,9 +7497,13 @@ PrefabInstance:
       propertyPath: puntoRespawn
       value: 
       objectReference: {fileID: 1293635101}
+    - target: {fileID: 72197150449852360, guid: 9cf6645b5f36149489e58782bc63152e, type: 3}
+      propertyPath: rendererElemento
+      value: 
+      objectReference: {fileID: 6296784957375760374}
     - target: {fileID: 1434875410999294448, guid: 9cf6645b5f36149489e58782bc63152e, type: 3}
       propertyPath: m_Name
-      value: Cylinder (1)
+      value: Cloro
       objectReference: {fileID: 0}
     - target: {fileID: 4848955765509049440, guid: 9cf6645b5f36149489e58782bc63152e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7412,6 +7550,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cf6645b5f36149489e58782bc63152e, type: 3}
+--- !u!23 &6296784957375760374 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6082081192342711998, guid: 9cf6645b5f36149489e58782bc63152e, type: 3}
+  m_PrefabInstance: {fileID: 6296784957375760373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -7428,3 +7571,4 @@ SceneRoots:
   - {fileID: 2020099829}
   - {fileID: 6024444619335795149}
   - {fileID: 1258394621}
+  - {fileID: 1205876435}
