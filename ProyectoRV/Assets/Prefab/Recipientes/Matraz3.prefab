@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7557899930110984163, guid: d14b30a4f6a5ec243bc85a5e3edfc097, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fc3eddef13cbf324f9ddab034700b9b6, type: 2}
     - target: {fileID: 919132149155446097, guid: d14b30a4f6a5ec243bc85a5e3edfc097, type: 3}
       propertyPath: m_Name
       value: Matraz3
