@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class PanelManager : MonoBehaviour
 {
-    public GameObject panel;
+    public GameObject panelTutorial;
 
-    public void AbrirPanel()
+    public void AbrirTutorial()
     {
-        panel.SetActive(true);
+        panelTutorial.SetActive(true);
     }
 
-    public void CerrarPanel()
+    public void CerrarTutorial()
     {
-        panel.SetActive(false);
+        panelTutorial.SetActive(false);
     }
 }

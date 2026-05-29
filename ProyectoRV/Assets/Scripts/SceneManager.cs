@@ -10,6 +10,7 @@ public class MenuVR : MonoBehaviour
 
     public void Salir()
     {
+        Debug.Log("Botón Salir pulsado");
         Application.Quit();
     }
 }
