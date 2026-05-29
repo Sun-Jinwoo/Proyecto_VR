@@ -1,9 +1,10 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
-    public GameObject[] panels; // arrastra tus 10 paneles aquí
+    public GameObject[] panels; // Arrastra aquí todos los paneles del tutorial
+    public GameObject tutorialPanel; // Panel principal del tutorial
+
     private int currentIndex = 0;
 
     void Start()
@@ -13,13 +14,11 @@ public class TutorialManager : MonoBehaviour
 
     void ShowPanel(int index)
     {
-        // Oculta todos
         for (int i = 0; i < panels.Length; i++)
         {
             panels[i].SetActive(false);
         }
 
-        // Activa el actual
         panels[index].SetActive(true);
     }
 
@@ -41,8 +40,8 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void GoToMenu()
+    public void CerrarTutorial()
     {
-        SceneManager.LoadScene("NewMenu");
+        tutorialPanel.SetActive(false);
     }
 }
