@@ -89,54 +89,49 @@ public class MesaMezcla : MonoBehaviour
             _elementoB.simbolo
         );
 
+        GameObject prefabA = _elementoA.prefabPropio;
+        GameObject prefabB = _elementoB.prefabPropio;
+        Vector3 posA = _elementoA.puntoRespawn != null ? _elementoA.puntoRespawn.position : _elementoA.posicionRespawn;
+        Vector3 posB = _elementoB.puntoRespawn != null ? _elementoB.puntoRespawn.position : _elementoB.posicionRespawn;
+
         if (resultado != null)
         {
-            _puntos += 100;
-            ActualizarPuntos();
-            MostrarTexto($"¡Reacción exitosa!\n{resultado}\n+100 puntos");
+            int bonusMision = Recetas.Instancia.VerificarMision(resultado);
 
-            GameObject prefabA = _elementoA.prefabPropio;
-            GameObject prefabB = _elementoB.prefabPropio;
-            Vector3 posA = _elementoA.puntoRespawn != null ? _elementoA.puntoRespawn.position : _elementoA.posicionRespawn;
-            Vector3 posB = _elementoB.puntoRespawn != null ? _elementoB.puntoRespawn.position : _elementoB.posicionRespawn;
-
-            Destroy(_elementoA.gameObject);
-            Destroy(_elementoB.gameObject);
-            _elementoA = null;
-            _elementoB = null;
-
-            ElementoQuimico nuevoA = Instantiate(prefabA, posA, Quaternion.identity).GetComponent<ElementoQuimico>();
-            ElementoQuimico nuevoB = Instantiate(prefabB, posB, Quaternion.identity).GetComponent<ElementoQuimico>();
-
-            nuevoA.posicionRespawn = posA;
-            nuevoB.posicionRespawn = posB;
-            nuevoA.prefabPropio = prefabA;
-            nuevoB.prefabPropio = prefabB;
+            if (bonusMision > 0)
+            {
+                _puntos += 100 + bonusMision;
+                ActualizarPuntos();
+                MostrarTexto($"¡MISIÓN COMPLETADA!\n{resultado}\n+{100 + bonusMision} puntos");
+            }
+            else
+            {
+                // Reacción válida pero no era la misión
+                _puntos += 100;
+                ActualizarPuntos();
+                MostrarTexto($"¡Reacción exitosa!\n{resultado}\n+100 puntos");
+            }
         }
         else
         {
             _puntos -= 25;
             ActualizarPuntos();
             MostrarTexto($"Combinación inválida:\n{_elementoA.simbolo} + {_elementoB.simbolo}\n-25 puntos");
-
-            GameObject prefabA = _elementoA.prefabPropio;
-            GameObject prefabB = _elementoB.prefabPropio;
-            Vector3 posA = _elementoA.puntoRespawn != null ? _elementoA.puntoRespawn.position : _elementoA.posicionRespawn;
-            Vector3 posB = _elementoB.puntoRespawn != null ? _elementoB.puntoRespawn.position : _elementoB.posicionRespawn;
-
-            Destroy(_elementoA.gameObject);
-            Destroy(_elementoB.gameObject);
-            _elementoA = null;
-            _elementoB = null;
-
-            ElementoQuimico nuevoA = Instantiate(prefabA, posA, Quaternion.identity).GetComponent<ElementoQuimico>();
-            ElementoQuimico nuevoB = Instantiate(prefabB, posB, Quaternion.identity).GetComponent<ElementoQuimico>();
-
-            nuevoA.posicionRespawn = posA;
-            nuevoB.posicionRespawn = posB;
-            nuevoA.prefabPropio = prefabA;
-            nuevoB.prefabPropio = prefabB;
         }
+
+        // Respawn siempre al final, sin importar el resultado
+        Destroy(_elementoA.gameObject);
+        Destroy(_elementoB.gameObject);
+        _elementoA = null;
+        _elementoB = null;
+
+        ElementoQuimico nuevoA = Instantiate(prefabA, posA, Quaternion.identity).GetComponent<ElementoQuimico>();
+        ElementoQuimico nuevoB = Instantiate(prefabB, posB, Quaternion.identity).GetComponent<ElementoQuimico>();
+
+        nuevoA.posicionRespawn = posA;
+        nuevoB.posicionRespawn = posB;
+        nuevoA.prefabPropio = prefabA;
+        nuevoB.prefabPropio = prefabB;
     }
 
     private void MostrarTexto(string mensaje)
