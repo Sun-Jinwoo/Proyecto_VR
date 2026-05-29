@@ -610,7 +610,7 @@ Transform:
   m_GameObject: {fileID: 143898491}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.18, z: 0}
+  m_LocalPosition: {x: 0, y: -0.201, z: 0.067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5332,7 +5332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 687882813135543283, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1025930374499378734, guid: 7ce7c7da25b36ae40903641370d1f6e6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7426,7 +7426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7945,7 +7945,7 @@ Transform:
   m_GameObject: {fileID: 1718748717}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1314, z: 0.0686}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10332,6 +10332,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hidrogeno
       objectReference: {fileID: 0}
+    - target: {fileID: 1089800167833809633, guid: 398356d0768d4324790985dfca7459cc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1448789945739147132, guid: 398356d0768d4324790985dfca7459cc, type: 3}
       propertyPath: prefabPropio
       value: 
@@ -10382,7 +10386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8870365629547949765, guid: 398356d0768d4324790985dfca7459cc, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10453,6 +10457,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sodio
       objectReference: {fileID: 0}
+    - target: {fileID: 3961647269243474695, guid: 6b317a8dac314e446a4df189c434be44, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10485,7 +10493,7 @@ PrefabInstance:
       objectReference: {fileID: 3822394803559265061}
     - target: {fileID: 5455252001248213146, guid: 41f5a2bc3c189f04ab4302dbe8e848a4, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6809799263297763198, guid: 41f5a2bc3c189f04ab4302dbe8e848a4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10530,6 +10538,10 @@ PrefabInstance:
     - target: {fileID: 8314162050710366327, guid: 41f5a2bc3c189f04ab4302dbe8e848a4, type: 3}
       propertyPath: m_Name
       value: Oxigeno
+      objectReference: {fileID: 0}
+    - target: {fileID: 8314162050710366327, guid: 41f5a2bc3c189f04ab4302dbe8e848a4, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10645,9 +10657,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cloro
       objectReference: {fileID: 0}
+    - target: {fileID: 1434875410999294448, guid: 9cf6645b5f36149489e58782bc63152e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2884082765827811542, guid: 9cf6645b5f36149489e58782bc63152e, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4848955765509049440, guid: 9cf6645b5f36149489e58782bc63152e, type: 3}
       propertyPath: m_LocalPosition.x
