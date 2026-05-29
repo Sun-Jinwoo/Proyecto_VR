@@ -266,8 +266,10 @@ MonoBehaviour:
   simbolo: H
   puntoRespawn: {fileID: 0}
   prefabPropio: {fileID: 0}
-  PosicionInicial: {x: 0, y: 0, z: 0}
-  RotacionInicial: {x: 0, y: 0, z: 0, w: 0}
+  rendererElemento: {fileID: 8003642010341796047}
+  posicionRespawn: {x: 0, y: 0, z: 0}
+  fueDepositado: 0
+  recipienteActual: {fileID: 0}
 --- !u!65 &8870365629547949765
 BoxCollider:
   m_ObjectHideFlags: 0
