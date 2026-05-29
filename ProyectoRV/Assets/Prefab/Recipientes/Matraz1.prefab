@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Matraz1
       objectReference: {fileID: 0}
+    - target: {fileID: 2515855571845889198, guid: a79e75e4917a76a43b6cfacbb7ac84dd, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fc3eddef13cbf324f9ddab034700b9b6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
