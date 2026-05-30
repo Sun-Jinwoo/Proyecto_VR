@@ -15,42 +15,48 @@ public class MesaMezcla : MonoBehaviour
     [Header("Tablero")]
     public TextMeshProUGUI textoResultado;
     public TextMeshProUGUI textoPuntuacion;
-    public TextMeshProUGUI textoTiempo; // NUEVO
+    public TextMeshProUGUI textoTiempo;
 
     [Header("Pantalla de resultados")]
     public GameObject canvasResultados;
-    public GameObject canvasTablero; // NUEVO
+    public GameObject canvasTablero;
     public TextMeshProUGUI textoPuntuacionFinal;
     public TextMeshProUGUI textoEstrellas;
     public TextMeshProUGUI textoMensaje;
 
-    [Header("Timer")] // NUEVO
-    public float tiempoTotal = 120f; // NUEVO — 2 minutos, cambialo a tu gusto
+    [Header("Timer")]
+    public float tiempoTotal = 120f;
+
+    // ── NUEVO: punto de origen de los efectos ──────────────────
+    // Arrastra en el Inspector el transform del centro de la mesa
+    // (o déjalo vacío y usará la posición de este GameObject)
+    [Header("Efectos VR")]
+    public Transform puntoEfectos;
 
     private ElementoQuimico _elementoA;
     private ElementoQuimico _elementoB;
     private int _puntos = 0;
-    private float _tiempoRestante; // NUEVO
-    private bool _juegoActivo = false; // NUEVO
+    private float _tiempoRestante;
+    private bool _juegoActivo = false;
 
     private void Start()
     {
-        slotA.selectEntered.AddListener(args => _elementoA = args.interactableObject.transform.GetComponent<ElementoQuimico>());
+        slotA.selectEntered.AddListener(args =>
+            _elementoA = args.interactableObject.transform.GetComponent<ElementoQuimico>());
         slotA.selectExited.AddListener(args => _elementoA = null);
 
-        slotB.selectEntered.AddListener(args => _elementoB = args.interactableObject.transform.GetComponent<ElementoQuimico>());
+        slotB.selectEntered.AddListener(args =>
+            _elementoB = args.interactableObject.transform.GetComponent<ElementoQuimico>());
         slotB.selectExited.AddListener(args => _elementoB = null);
 
         boton.selectEntered.AddListener(args => Mezclar());
 
         ActualizarPuntos();
-
-        // NUEVO — iniciamos el timer
         _tiempoRestante = tiempoTotal;
         _juegoActivo = true;
     }
 
-    private void Update() // NUEVO
+    private void Update()
     {
         if (!_juegoActivo) return;
 
@@ -65,16 +71,12 @@ public class MesaMezcla : MonoBehaviour
         }
     }
 
-    private void ActualizarTimer() // NUEVO
+    private void ActualizarTimer()
     {
         if (textoTiempo == null) return;
-
-        int minutos = Mathf.FloorToInt(_tiempoRestante / 60f);
+        int minutos  = Mathf.FloorToInt(_tiempoRestante / 60f);
         int segundos = Mathf.FloorToInt(_tiempoRestante % 60f);
-
-        textoTiempo.text = $"{minutos:00}:{segundos:00}";
-
-        // Se pone rojo cuando quedan menos de 30 segundos
+        textoTiempo.text  = $"{minutos:00}:{segundos:00}";
         textoTiempo.color = _tiempoRestante < 30f ? Color.red : Color.white;
     }
 
@@ -86,6 +88,11 @@ public class MesaMezcla : MonoBehaviour
             return;
         }
 
+        // Posición donde aparecerán los efectos
+        Vector3 posEfecto = puntoEfectos != null
+            ? puntoEfectos.position
+            : transform.position;
+
         string resultado = Recetas.Instancia.VerificarReaccion(
             _elementoA.simbolo,
             _elementoB.simbolo
@@ -94,8 +101,12 @@ public class MesaMezcla : MonoBehaviour
         // Guardamos datos de respawn ANTES de destruir
         GameObject prefabA = _elementoA.prefabPropio;
         GameObject prefabB = _elementoB.prefabPropio;
-        Vector3 posA = _elementoA.puntoRespawn != null ? _elementoA.puntoRespawn.position : _elementoA.posicionRespawn;
-        Vector3 posB = _elementoB.puntoRespawn != null ? _elementoB.puntoRespawn.position : _elementoB.posicionRespawn;
+        Vector3 posA = _elementoA.puntoRespawn != null
+            ? _elementoA.puntoRespawn.position
+            : _elementoA.posicionRespawn;
+        Vector3 posB = _elementoB.puntoRespawn != null
+            ? _elementoB.puntoRespawn.position
+            : _elementoB.posicionRespawn;
 
         if (resultado != null)
         {
@@ -103,13 +114,19 @@ public class MesaMezcla : MonoBehaviour
 
             if (bonusMision > 0)
             {
+                // ── EFECTO: misión completada ──────────────────────
+                EfectosReceta.Instancia?.ReproducirEfectoMisionCompleta(
+                    100 + bonusMision, posEfecto);
+
                 _puntos += 100 + bonusMision;
                 ActualizarPuntos();
                 MostrarTexto($"¡MISIÓN COMPLETADA!\n{resultado}\n+{100 + bonusMision} puntos");
             }
             else
             {
-                // Reacción válida pero no era la misión
+                // ── EFECTO: reacción válida ────────────────────────
+                EfectosReceta.Instancia?.ReproducirEfectoExito(posEfecto);
+
                 _puntos += 100;
                 ActualizarPuntos();
                 MostrarTexto($"¡Reacción exitosa!\n{resultado}\n+100 puntos");
@@ -117,6 +134,9 @@ public class MesaMezcla : MonoBehaviour
         }
         else
         {
+            // ── EFECTO: combinación inválida ──────────────────────
+            EfectosReceta.Instancia?.ReproducirEfectoFallo(posEfecto);
+
             _puntos -= 25;
             ActualizarPuntos();
             MostrarTexto($"Combinación inválida:\n{_elementoA.simbolo} + {_elementoB.simbolo}\n-25 puntos");
@@ -128,20 +148,23 @@ public class MesaMezcla : MonoBehaviour
             });
         }
 
-        // Respawn siempre al final, sin importar el resultado
+        // Respawn siempre al final
         Destroy(_elementoA.gameObject);
         Destroy(_elementoB.gameObject);
         _elementoA = null;
         _elementoB = null;
 
-        ElementoQuimico nuevoA = Instantiate(prefabA, posA, Quaternion.identity).GetComponent<ElementoQuimico>();
-        ElementoQuimico nuevoB = Instantiate(prefabB, posB, Quaternion.identity).GetComponent<ElementoQuimico>();
+        ElementoQuimico nuevoA = Instantiate(prefabA, posA, Quaternion.identity)
+            .GetComponent<ElementoQuimico>();
+        ElementoQuimico nuevoB = Instantiate(prefabB, posB, Quaternion.identity)
+            .GetComponent<ElementoQuimico>();
 
         nuevoA.posicionRespawn = posA;
         nuevoB.posicionRespawn = posB;
-        nuevoA.prefabPropio = prefabA;
-        nuevoB.prefabPropio = prefabB;
+        nuevoA.prefabPropio    = prefabA;
+        nuevoB.prefabPropio    = prefabB;
     }
+
     private void MostrarTexto(string mensaje)
     {
         if (textoResultado != null)
@@ -150,31 +173,26 @@ public class MesaMezcla : MonoBehaviour
 
     private void MostrarResultados()
     {
-        if (canvasTablero != null)
-            canvasTablero.SetActive(false);
-        if (canvasResultados != null)
-            canvasResultados.SetActive(true);
+        if (canvasTablero    != null) canvasTablero.SetActive(false);
+        if (canvasResultados != null) canvasResultados.SetActive(true);
 
-        // Puntuación final
         if (textoPuntuacionFinal != null)
             textoPuntuacionFinal.text = $"Puntuación final:\n{_puntos} puntos";
 
-        // Estrellas según puntuación
         int estrellas = 0;
-        if (_puntos >= 300) estrellas = 3;
+        if      (_puntos >= 300) estrellas = 3;
         else if (_puntos >= 150) estrellas = 2;
-        else if (_puntos >= 50) estrellas = 1;
+        else if (_puntos >= 50)  estrellas = 1;
 
         if (textoEstrellas != null)
             textoEstrellas.text = estrellas switch
             {
                 3 => "*** ¡Brillante!",
                 2 => "** ¡Bien hecho!",
-                1 => "* Sigue practicando",
+                1 => "*  Sigue practicando",
                 _ => "Inténtalo de nuevo"
             };
 
-        // Mensaje motivacional
         if (textoMensaje != null)
             textoMensaje.text = _puntos > 0
                 ? $"Completaste {_puntos / 100} reacciones exitosas.\n¡Eres un gran científico!"
