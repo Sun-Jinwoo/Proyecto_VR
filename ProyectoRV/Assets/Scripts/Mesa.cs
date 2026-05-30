@@ -61,7 +61,7 @@ public class MesaMezcla : MonoBehaviour
         {
             _tiempoRestante = 0f;
             _juegoActivo = false;
-            MostrarTexto($"¡Tiempo agotado!\nPuntuación final: {_puntos}");
+            MostrarResultados();
         }
     }
 
@@ -120,6 +120,12 @@ public class MesaMezcla : MonoBehaviour
             _puntos -= 25;
             ActualizarPuntos();
             MostrarTexto($"Combinación inválida:\n{_elementoA.simbolo} + {_elementoB.simbolo}\n-25 puntos");
+
+            SistemaAlertaDEA.Instancia.RegistrarError(() =>
+            {
+                _juegoActivo = false;
+                MostrarResultados();
+            });
         }
 
         // Respawn siempre al final, sin importar el resultado
@@ -138,14 +144,41 @@ public class MesaMezcla : MonoBehaviour
     }
     private void MostrarTexto(string mensaje)
     {
+        if (textoResultado != null)
+            textoResultado.text = mensaje;
+    }
+
+    private void MostrarResultados()
+    {
         if (canvasTablero != null)
             canvasTablero.SetActive(false);
-
         if (canvasResultados != null)
             canvasResultados.SetActive(true);
 
-        if (textoResultado != null)
-            textoResultado.text = mensaje;
+        // Puntuación final
+        if (textoPuntuacionFinal != null)
+            textoPuntuacionFinal.text = $"Puntuación final:\n{_puntos} puntos";
+
+        // Estrellas según puntuación
+        int estrellas = 0;
+        if (_puntos >= 300) estrellas = 3;
+        else if (_puntos >= 150) estrellas = 2;
+        else if (_puntos >= 50) estrellas = 1;
+
+        if (textoEstrellas != null)
+            textoEstrellas.text = estrellas switch
+            {
+                3 => "*** ¡Brillante!",
+                2 => "** ¡Bien hecho!",
+                1 => "* Sigue practicando",
+                _ => "Inténtalo de nuevo"
+            };
+
+        // Mensaje motivacional
+        if (textoMensaje != null)
+            textoMensaje.text = _puntos > 0
+                ? $"Completaste {_puntos / 100} reacciones exitosas.\n¡Eres un gran científico!"
+                : "No lograste ninguna reacción.\n¡Inténtalo de nuevo!";
     }
 
     private void ActualizarPuntos()
