@@ -13,9 +13,17 @@ public class EquipamientoItem : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<XRGrabInteractable>().selectEntered.AddListener(args =>
+        XRGrabInteractable grab = GetComponent<XRGrabInteractable>();
+
+        grab.selectEntered.AddListener(args =>
         {
             ChecklistEquipamiento.Instancia.MarcarItem(nombreItem);
+        });
+
+        grab.selectExited.AddListener(args =>
+        {
+            if (ChecklistEquipamiento.Instancia.EstaEquipado(nombreItem))
+                Destroy(gameObject);
         });
     }
 

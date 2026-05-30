@@ -13,23 +13,20 @@ public class MesaMezcla : MonoBehaviour
     public XRBaseInteractable boton;
 
     [Header("Tablero")]
-    public TextMeshProUGUI textoResultado;
-    public TextMeshProUGUI textoPuntuacion;
-    public TextMeshProUGUI textoTiempo;
+    public TextMeshPro textoResultado;
+    public TextMeshPro textoPuntuacion;
+    public TextMeshPro textoTiempo;
 
     [Header("Pantalla de resultados")]
     public GameObject canvasResultados;
     public GameObject canvasTablero;
-    public TextMeshProUGUI textoPuntuacionFinal;
-    public TextMeshProUGUI textoEstrellas;
-    public TextMeshProUGUI textoMensaje;
+    public TextMeshPro textoPuntuacionFinal;
+    public TextMeshPro textoEstrellas;
+    public TextMeshPro textoMensaje;
 
     [Header("Timer")]
     public float tiempoTotal = 120f;
 
-    // ── NUEVO: punto de origen de los efectos ──────────────────
-    // Arrastra en el Inspector el transform del centro de la mesa
-    // (o déjalo vacío y usará la posición de este GameObject)
     [Header("Efectos VR")]
     public Transform puntoEfectos;
 
@@ -114,17 +111,15 @@ public class MesaMezcla : MonoBehaviour
 
             if (bonusMision > 0)
             {
-                // ── EFECTO: misión completada ──────────────────────
                 EfectosReceta.Instancia?.ReproducirEfectoMisionCompleta(
-                    100 + bonusMision, posEfecto);
+                    bonusMision, posEfecto);
 
-                _puntos += 100 + bonusMision;
+                _puntos += bonusMision;
                 ActualizarPuntos();
-                MostrarTexto($"¡MISIÓN COMPLETADA!\n{resultado}\n+{100 + bonusMision} puntos");
+                MostrarTexto($"¡MISION COMPLETADA!\n{resultado}\n+{bonusMision} puntos");
             }
             else
             {
-                // ── EFECTO: reacción válida ────────────────────────
                 EfectosReceta.Instancia?.ReproducirEfectoExito(posEfecto);
 
                 _puntos += 100;
@@ -134,7 +129,6 @@ public class MesaMezcla : MonoBehaviour
         }
         else
         {
-            // ── EFECTO: combinación inválida ──────────────────────
             EfectosReceta.Instancia?.ReproducirEfectoFallo(posEfecto);
 
             _puntos -= 25;
@@ -148,7 +142,6 @@ public class MesaMezcla : MonoBehaviour
             });
         }
 
-        // Respawn siempre al final
         Destroy(_elementoA.gameObject);
         Destroy(_elementoB.gameObject);
         _elementoA = null;
