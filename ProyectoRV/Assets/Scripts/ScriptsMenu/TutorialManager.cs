@@ -2,32 +2,34 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
-    public GameObject[] panels; // Arrastra aquí todos los paneles del tutorial
-    public GameObject tutorialPanel; // Panel principal del tutorial
+    public GameObject[] textos;
+    public GameObject tutorialPanel;
 
     private int currentIndex = 0;
 
     void Start()
     {
-        ShowPanel(currentIndex);
+        MostrarTexto(currentIndex);
     }
 
-    void ShowPanel(int index)
+    void MostrarTexto(int index)
     {
-        for (int i = 0; i < panels.Length; i++)
+        // Oculta todos los textos
+        for (int i = 0; i < textos.Length; i++)
         {
-            panels[i].SetActive(false);
+            textos[i].SetActive(false);
         }
 
-        panels[index].SetActive(true);
+        // Muestra solo el actual
+        textos[index].SetActive(true);
     }
 
     public void NextPanel()
     {
-        if (currentIndex < panels.Length - 1)
+        if (currentIndex < textos.Length - 1)
         {
             currentIndex++;
-            ShowPanel(currentIndex);
+            MostrarTexto(currentIndex);
         }
     }
 
@@ -36,7 +38,7 @@ public class TutorialManager : MonoBehaviour
         if (currentIndex > 0)
         {
             currentIndex--;
-            ShowPanel(currentIndex);
+            MostrarTexto(currentIndex);
         }
     }
 
@@ -44,4 +46,6 @@ public class TutorialManager : MonoBehaviour
     {
         tutorialPanel.SetActive(false);
     }
+
+    
 }
