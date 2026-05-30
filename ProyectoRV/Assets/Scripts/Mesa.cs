@@ -197,4 +197,25 @@ public class MesaMezcla : MonoBehaviour
         if (textoPuntuacion != null)
             textoPuntuacion.text = $"Puntos: {_puntos}";
     }
+
+    public void Reiniciar()
+    {
+        // Resetear variables
+        _puntos = 0;
+        _tiempoRestante = tiempoTotal;
+        _juegoActivo = true;
+
+        // Resetear UI
+        ActualizarPuntos();
+        if (canvasResultados != null) canvasResultados.SetActive(false);
+        if (canvasTablero != null) canvasTablero.SetActive(true);
+
+        // Resetear alertas DEA
+        SistemaAlertaDEA.Instancia?.ResetearAlertas();
+
+        // Resetear misiones
+        Recetas.Instancia?.AsignarNuevaMision();
+
+        Debug.Log("[Juego] Reiniciado");
+    }
 }
