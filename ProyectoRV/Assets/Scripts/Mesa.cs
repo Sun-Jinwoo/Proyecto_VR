@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -12,24 +13,25 @@ public class MesaMezcla : MonoBehaviour
     public XRBaseInteractable boton;
 
     [Header("Tablero")]
-    public GameObject canvasTablero;
     public TextMeshProUGUI textoResultado;
     public TextMeshProUGUI textoPuntuacion;
-    public TextMeshProUGUI textoTiempo;
+    public TextMeshProUGUI textoTiempo; // NUEVO
 
     [Header("Pantalla de resultados")]
-    public GameObject canvasResultados;         
-    public TextMeshProUGUI textoPuntuacionFinal; 
-    public TextMeshProUGUI textoEstrellas;       
-    public TextMeshProUGUI textoMensaje;         
+    public GameObject canvasResultados;
+    public GameObject canvasTablero; // NUEVO
+    public TextMeshProUGUI textoPuntuacionFinal;
+    public TextMeshProUGUI textoEstrellas;
+    public TextMeshProUGUI textoMensaje;
 
-    public float tiempoTotal = 120f;
+    [Header("Timer")] // NUEVO
+    public float tiempoTotal = 120f; // NUEVO — 2 minutos, cambialo a tu gusto
 
     private ElementoQuimico _elementoA;
     private ElementoQuimico _elementoB;
     private int _puntos = 0;
-    private float _tiempoRestante; 
-    private bool _juegoActivo = false;
+    private float _tiempoRestante; // NUEVO
+    private bool _juegoActivo = false; // NUEVO
 
     private void Start()
     {
@@ -43,11 +45,12 @@ public class MesaMezcla : MonoBehaviour
 
         ActualizarPuntos();
 
+        // NUEVO — iniciamos el timer
         _tiempoRestante = tiempoTotal;
         _juegoActivo = true;
     }
 
-    private void Update() 
+    private void Update() // NUEVO
     {
         if (!_juegoActivo) return;
 
@@ -58,7 +61,7 @@ public class MesaMezcla : MonoBehaviour
         {
             _tiempoRestante = 0f;
             _juegoActivo = false;
-            MostrarResultados();
+            MostrarTexto($"¡Tiempo agotado!\nPuntuación final: {_puntos}");
         }
     }
 
@@ -75,7 +78,6 @@ public class MesaMezcla : MonoBehaviour
         textoTiempo.color = _tiempoRestante < 30f ? Color.red : Color.white;
     }
 
-
     private void Mezclar()
     {
         if (_elementoA == null || _elementoB == null)
@@ -89,6 +91,7 @@ public class MesaMezcla : MonoBehaviour
             _elementoB.simbolo
         );
 
+        // Guardamos datos de respawn ANTES de destruir
         GameObject prefabA = _elementoA.prefabPropio;
         GameObject prefabB = _elementoB.prefabPropio;
         Vector3 posA = _elementoA.puntoRespawn != null ? _elementoA.puntoRespawn.position : _elementoA.posicionRespawn;
@@ -133,52 +136,21 @@ public class MesaMezcla : MonoBehaviour
         nuevoA.prefabPropio = prefabA;
         nuevoB.prefabPropio = prefabB;
     }
-
     private void MostrarTexto(string mensaje)
     {
+        if (canvasTablero != null)
+            canvasTablero.SetActive(false);
+
+        if (canvasResultados != null)
+            canvasResultados.SetActive(true);
+
         if (textoResultado != null)
             textoResultado.text = mensaje;
     }
 
-    private void ActualizarPuntos() 
+    private void ActualizarPuntos()
     {
         if (textoPuntuacion != null)
             textoPuntuacion.text = $"Puntos: {_puntos}";
-    }
-
-    private void MostrarResultados()
-    {
-        if (canvasTablero != null)
-            canvasTablero.SetActive(false);
-        // Ocultamos el tablero y mostramos la pantalla final
-        if (canvasResultados != null)
-            canvasResultados.SetActive(true);
-
-        // Puntuación
-        if (textoPuntuacionFinal != null)
-            textoPuntuacionFinal.text = $"Puntuación final:\n{_puntos} puntos";
-
-        // Estrellas según puntuación
-        int estrellas = 0;
-        if (_puntos >= 300) estrellas = 3;
-        else if (_puntos >= 150) estrellas = 2;
-        else if (_puntos >= 50) estrellas = 1;
-
-        if (textoEstrellas != null)
-            textoEstrellas.text = estrellas switch
-            {
-                3 => "*** ¡Brillante!",
-                2 => "** ¡Bien hecho!",
-                1 => "* Sigue practicando",
-                _ => "Inténtalo de nuevo"
-            };
-
-        // Mensaje motivacional
-        if (textoMensaje != null)
-            textoMensaje.text = _puntos > 0
-                ? $"Completaste {_puntos / 100} reacciones exitosas.\n¡Eres un gran científico!"
-                : "No lograste ninguna reacción.\n¡Inténtalo de nuevo!";
-
-        Debug.Log($"[Resultados] Juego terminado. Puntos: {_puntos}");
     }
 }
