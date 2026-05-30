@@ -20,8 +20,8 @@ public class Recetas : MonoBehaviour
     public List<Receta> recetas = new List<Receta>();
 
     [Header("UI Tablero")]
-    public TextMeshProUGUI textoMisionActual;
-    public TextMeshProUGUI textoMisionesCompletadas;
+    public TextMeshPro textoMisionActual;
+    public TextMeshPro textoMisionesCompletadas;
 
     private Receta _misionActual;
     private int _misionesCompletadas = 0;
@@ -31,31 +31,6 @@ public class Recetas : MonoBehaviour
     {
         if (Instancia != null && Instancia != this) { Destroy(gameObject); return; }
         Instancia = this;
-
-        recetas.Add(new Receta
-        {
-            simboloA = "HCl",
-            simboloB = "NaOH",
-            nombreResultado = "Agua y Sal",
-            bonusPuntos = 200,
-            descripcion = "El cartel necesita: Agua y Sal"
-        });
-        recetas.Add(new Receta
-        {
-            simboloA = "H2",
-            simboloB = "O2",
-            nombreResultado = "Agua",
-            bonusPuntos = 300,
-            descripcion = "Misi�n urgente: sintetiza Agua pura"
-        });
-        recetas.Add(new Receta
-        {
-            simboloA = "Na",
-            simboloB = "Cl",
-            nombreResultado = "Sal de Mesa",
-            bonusPuntos = 150,
-            descripcion = "Entrega pendiente: Sal de Mesa"
-        });
     }
 
     private void Start()
@@ -63,7 +38,6 @@ public class Recetas : MonoBehaviour
         AsignarNuevaMision();
     }
 
-    // Antes estaba en Recetas.cs
     public string VerificarReaccion(string simboloA, string simboloB)
     {
         foreach (Receta receta in recetas)
@@ -78,7 +52,6 @@ public class Recetas : MonoBehaviour
         return null;
     }
 
-    // Verifica si el resultado coincide con la misi�n activa
     public int VerificarMision(string resultado)
     {
         if (_misionActual == null) return 0;
@@ -105,7 +78,7 @@ public class Recetas : MonoBehaviour
     private void ActualizarUI()
     {
         if (textoMisionActual != null)
-            textoMisionActual.text = $"Misi�n:\n{_misionActual.descripcion}";
+            textoMisionActual.text = $"Misión:\n{_misionActual.descripcion}";
 
         if (textoMisionesCompletadas != null)
             textoMisionesCompletadas.text = $"Completadas: {_misionesCompletadas}";

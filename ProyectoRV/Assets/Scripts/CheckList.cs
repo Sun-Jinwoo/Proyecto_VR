@@ -14,8 +14,8 @@ public class ChecklistEquipamiento : MonoBehaviour
 
     [Header("UI Canvas Checklist")]
     public GameObject canvasChecklist;        // El canvas entero
-    public TextMeshProUGUI textoTitulo;       // "Equipamiento de seguridad"
-    public List<TextMeshProUGUI> textosItems; // Un TMP por cada item (3 en total)
+    public TextMeshPro textoTitulo;       // "Equipamiento de seguridad"
+    public List<TextMeshPro> textosItems; // Un TMP por cada item (3 en total)
 
     private List<string> _itemsEquipados = new List<string>();
 
@@ -58,7 +58,7 @@ public class ChecklistEquipamiento : MonoBehaviour
             string item = i < itemsRequeridos.Count ? itemsRequeridos[i] : "";
             bool equipado = _itemsEquipados.Contains(item);
 
-            textosItems[i].text = equipado ? $"? {item}" : $"? {item}";
+            textosItems[i].text = equipado ? $"{item}" : $"{item}";
             textosItems[i].color = equipado ? Color.green : Color.white;
         }
     }
@@ -74,5 +74,10 @@ public class ChecklistEquipamiento : MonoBehaviour
         if (mesaDeMezcla != null)
             mesaDeMezcla.enabled = true;
         mesaDeMezcla.canvasTablero.SetActive(true);
+    }
+
+    public bool EstaEquipado(string nombreItem)
+    {
+        return _itemsEquipados.Contains(nombreItem);
     }
 }

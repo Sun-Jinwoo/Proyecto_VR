@@ -13,7 +13,7 @@ public class SistemaAlertaDEA : MonoBehaviour
     public Light[] lucesRojas; // Arrastra aquí las luces del laboratorio
 
     [Header("UI Alerta")]
-    public TextMeshProUGUI textoNivelAlerta;
+    public TextMeshPro textoNivelAlerta;
 
     private int _erroresActuales = 0;
     private bool _parpadeando = false;
