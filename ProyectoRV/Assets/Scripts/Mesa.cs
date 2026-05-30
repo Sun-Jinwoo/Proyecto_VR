@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Transformers;
 
 public class MesaMezcla : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class MesaMezcla : MonoBehaviour
     public TextMeshPro textoPuntuacionFinal;
     public TextMeshPro textoEstrellas;
     public TextMeshPro textoMensaje;
+    public GameObject canvasGameOver;
 
     [Header("Timer")]
     public float tiempoTotal = 120f;
@@ -147,15 +149,34 @@ public class MesaMezcla : MonoBehaviour
         _elementoA = null;
         _elementoB = null;
 
-        ElementoQuimico nuevoA = Instantiate(prefabA, posA, Quaternion.identity)
-            .GetComponent<ElementoQuimico>();
-        ElementoQuimico nuevoB = Instantiate(prefabB, posB, Quaternion.identity)
-            .GetComponent<ElementoQuimico>();
+        ElementoQuimico nuevoA = Instantiate(prefabA, posA, Quaternion.identity).GetComponent<ElementoQuimico>();
+        ElementoQuimico nuevoB = Instantiate(prefabB, posB, Quaternion.identity).GetComponent<ElementoQuimico>();
 
         nuevoA.posicionRespawn = posA;
         nuevoB.posicionRespawn = posB;
-        nuevoA.prefabPropio    = prefabA;
-        nuevoB.prefabPropio    = prefabB;
+        nuevoA.prefabPropio = prefabA;
+        nuevoB.prefabPropio = prefabB;
+
+        // Resetear Rigidbody
+        Rigidbody rbA = nuevoA.GetComponent<Rigidbody>();
+        Rigidbody rbB = nuevoB.GetComponent<Rigidbody>();
+        if (rbA != null) { rbA.linearVelocity = Vector3.zero; rbA.angularVelocity = Vector3.zero; }
+        if (rbB != null) { rbB.linearVelocity = Vector3.zero; rbB.angularVelocity = Vector3.zero; }
+
+        //Habilitar XRGrabInteractable
+        XRGrabInteractable grabA = nuevoA.GetComponent<XRGrabInteractable>();
+        XRGrabInteractable grabB = nuevoB.GetComponent<XRGrabInteractable>();
+        if (grabA != null) grabA.enabled = true;
+        if (grabB != null) grabB.enabled = true;
+
+        nuevoA.enabled = true;
+        nuevoB.enabled = true;
+
+        //Habilitar XRGeneralGrabTransformer
+        XRGeneralGrabTransformer transformerA = nuevoA.GetComponent<XRGeneralGrabTransformer>();
+        XRGeneralGrabTransformer transformerB = nuevoB.GetComponent<XRGeneralGrabTransformer>();
+        if (transformerA != null) transformerA.enabled = true;
+        if (transformerB != null) transformerB.enabled = true;
     }
 
     private void MostrarTexto(string mensaje)
@@ -217,5 +238,13 @@ public class MesaMezcla : MonoBehaviour
         Recetas.Instancia?.AsignarNuevaMision();
 
         Debug.Log("[Juego] Reiniciado");
+    }
+
+    public void GameOverDEA()
+    {
+        _juegoActivo = false;
+
+        if (canvasTablero != null) canvasTablero.SetActive(false);
+        if (canvasGameOver != null) canvasGameOver.SetActive(true);
     }
 }

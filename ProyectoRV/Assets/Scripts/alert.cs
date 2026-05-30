@@ -39,7 +39,7 @@ public class SistemaAlertaDEA : MonoBehaviour
             // Llegó al máximo — Game Over
             StopAllCoroutines();
             SetLuces(true); // Luces fijas en rojo
-            onGameOver?.Invoke();
+            MesaMezcla.FindFirstObjectByType<MesaMezcla>()?.GameOverDEA();
         }
         else
         {
