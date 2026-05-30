@@ -229,6 +229,7 @@ public class MesaMezcla : MonoBehaviour
         // Resetear UI
         ActualizarPuntos();
         if (canvasResultados != null) canvasResultados.SetActive(false);
+        if(canvasGameOver!=null) canvasGameOver.SetActive(false);
         if (canvasTablero != null) canvasTablero.SetActive(true);
 
         // Resetear alertas DEA
