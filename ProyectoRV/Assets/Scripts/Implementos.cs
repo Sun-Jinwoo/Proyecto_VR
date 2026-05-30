@@ -11,6 +11,14 @@ public class EquipamientoItem : MonoBehaviour
     private XRGrabInteractable _grab;
     private bool _yaEquipado = false;
 
+    private void Start()
+    {
+        GetComponent<XRGrabInteractable>().selectEntered.AddListener(args =>
+        {
+            ChecklistEquipamiento.Instancia.MarcarItem(nombreItem);
+        });
+    }
+
     private void Awake()
     {
         _grab = GetComponent<XRGrabInteractable>();
