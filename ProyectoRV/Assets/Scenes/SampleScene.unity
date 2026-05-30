@@ -2066,6 +2066,7 @@ GameObject:
   - component: {fileID: 352043502}
   - component: {fileID: 352043503}
   - component: {fileID: 352043504}
+  - component: {fileID: 352043505}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2139,6 +2140,32 @@ MonoBehaviour:
   textosItems:
   - {fileID: 150443954}
   - {fileID: 1645982876}
+--- !u!114 &352043505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352043501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bddd471615569c4793d2a35592a932b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EfectosReceta
+  particulasExito: {fileID: 4771003974420178395, guid: d8ff4ba1bedae0147b931873dce7e556, type: 3}
+  particulasFallo: {fileID: 3872330215340621443, guid: 5e4df5ac67e0e3b4e984b255b2ea3440, type: 3}
+  particulasMisionCompleta: {fileID: 4771003974420178395, guid: d8ff4ba1bedae0147b931873dce7e556, type: 3}
+  panelMision3D: {fileID: 935426298}
+  textoBonus3D: {fileID: 935426299}
+  textoMisionPanel3D: {fileID: 935426300}
+  duracionPanelMision: 3
+  distanciaAlJugador: 1.2
+  alturaPanel: 0.3
+  prefabTextoFlotante: {fileID: 2660685190979474159, guid: a716ff854d4760f41934097847029780, type: 3}
+  audioSource: {fileID: 0}
+  sonidoExito: {fileID: 0}
+  sonidoFallo: {fileID: 0}
+  sonidoMisionCompleta: {fileID: 0}
 --- !u!1001 &379868871
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3103,6 +3130,7 @@ MonoBehaviour:
   textoEstrellas: {fileID: 398048125}
   textoMensaje: {fileID: 191397336}
   tiempoTotal: 120
+  puntoEfectos: {fileID: 522595118}
 --- !u!1001 &530180186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5525,6 +5553,100 @@ Transform:
   - {fileID: 1884160683}
   m_Father: {fileID: 1258394621}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &935426297
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4939889133822373933, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+      propertyPath: m_Name
+      value: 'PanelMision3D '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4939889133822373933, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993644679102411017, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.96273
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993644679102411017, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.51345
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993644679102411017, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.063
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993644679102411017, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993644679102411017, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993644679102411017, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993644679102411017, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993644679102411017, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993644679102411017, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993644679102411017, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 371744181301864987, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 4596110416280563034, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+--- !u!1 &935426298 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4939889133822373933, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+  m_PrefabInstance: {fileID: 935426297}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &935426299 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2211569961875726018, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+  m_PrefabInstance: {fileID: 935426297}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
+--- !u!114 &935426300 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7537357246749686067, guid: fc77cbaebabbbd74db5465f89871ed25, type: 3}
+  m_PrefabInstance: {fileID: 935426297}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
 --- !u!4 &942034448 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6809799263297763198, guid: 41f5a2bc3c189f04ab4302dbe8e848a4, type: 3}
@@ -13393,3 +13515,4 @@ SceneRoots:
   - {fileID: 725583617}
   - {fileID: 1199264738}
   - {fileID: 864470399}
+  - {fileID: 935426297}
