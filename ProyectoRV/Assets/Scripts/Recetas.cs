@@ -46,7 +46,7 @@ public class Recetas : MonoBehaviour
             simboloB = "O2",
             nombreResultado = "Agua",
             bonusPuntos = 300,
-            descripcion = "Misión urgente: sintetiza Agua pura"
+            descripcion = "Misiï¿½n urgente: sintetiza Agua pura"
         });
         recetas.Add(new Receta
         {
@@ -78,7 +78,7 @@ public class Recetas : MonoBehaviour
         return null;
     }
 
-    // Verifica si el resultado coincide con la misión activa
+    // Verifica si el resultado coincide con la misiï¿½n activa
     public int VerificarMision(string resultado)
     {
         if (_misionActual == null) return 0;
@@ -105,7 +105,7 @@ public class Recetas : MonoBehaviour
     private void ActualizarUI()
     {
         if (textoMisionActual != null)
-            textoMisionActual.text = $"Misión:\n{_misionActual.descripcion}";
+            textoMisionActual.text = $"Misiï¿½n:\n{_misionActual.descripcion}";
 
         if (textoMisionesCompletadas != null)
             textoMisionesCompletadas.text = $"Completadas: {_misionesCompletadas}";
